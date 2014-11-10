@@ -17,7 +17,7 @@ public class SuperArray{
 	return r;
     }
     public boolean range(int index){
-	return !(index < 0 || index >= size());
+	return !(index < 0 || index >= con);
     }
     public void add(Object e){
 	if(L.length > 0){
@@ -37,21 +37,12 @@ public class SuperArray{
 	}
     }
     public void add(int index, Object e){
-	if(range(index)){
-	    resize(L.length + 1);
-	    for(int i = index+1; i < L.length; i++){
-		L[i] = L[i - 1];
-	    }
-	    set(index,e);
-	}else{
-	    System.out.println("Error: Out of range");
-	}
-    }
-		
+	private Object[] temp = new Object[con + 1];
+	for(int i = 0; i < index - 1; i++){
+	    
 
 
     public int size(){
-	con = 0;
 	for(int i = 0; i < L.length; i++){
 	    if(L[i] != null){
 		con++;
@@ -62,7 +53,7 @@ public class SuperArray{
     public void resize(int newSize){
 	if(L.length > 0){
 	    Object[]temp = new Object[newSize];
-	    for(int i = 0; i < L.length && i < newSize;i++){
+	    for(int i = 0; i < size() && i < newSize;i++){
 		temp[i] = L[i];
 	    }
 	    L = temp;
@@ -78,13 +69,7 @@ public class SuperArray{
     public Object get(int index){
 	return L[index - 1];
     }
-    public Object set(int index, Object e){
-	if(range(index)){
-	    L[index] = e;
-	    return e;
-	}else{
-	    System.out.println("Error: Out of range");
-		return null;
-	}
+    public void set(int index, Object e){
+	L[index - 1] = e;
     }
 }
