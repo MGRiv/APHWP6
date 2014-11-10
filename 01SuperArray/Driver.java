@@ -13,6 +13,8 @@ public class Driver{
 	M.add(0, new Boolean(false));
 	L.remove(7);
 	L.remove(2);
+	L.get(3);
+	L.get(9);
 	System.out.println(L.toString());
 	System.out.println(M.toString());
     }
