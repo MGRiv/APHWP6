@@ -86,7 +86,9 @@ public class SuperArray{
 	}
     }
     public Object get(int index){
-	return L[index - 1];
+	if(range(index)){
+	    return L[index - 1];
+	}
     }
     public Object set(int index, Object e){
 	if(range(index)){
