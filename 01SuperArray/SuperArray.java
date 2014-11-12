@@ -44,7 +44,7 @@ public class SuperArray{
 	    }
 	    set(index,e);
 	}else{
-	    System.out.println("Error: Out of range");
+	    throw new IndexOutOfBoundsException("invalid index");
 	}
     }
     public int size(){
@@ -81,16 +81,14 @@ public class SuperArray{
 	    resize(L.length - 1);
 	    return r;
 	}else{
-	    System.out.println("Error: Out of range");
-	    return null;
+	    throw new IndexOutOfBoundsException("invalid index");
 	}
     }
     public Object get(int index){
 	if(range(index)){
 	    return L[index - 1];
 	}else{
-	    System.out.println("Error: Out of range");
-	    return null;
+	    throw new IndexOutOfBoundsException("invalid index");
 	}
     }
     public Object set(int index, Object e){
@@ -98,8 +96,7 @@ public class SuperArray{
 	    L[index] = e;
 	    return e;
 	}else{
-	    System.out.println("Error: Out of range");
-	    return null;
+	    throw new IndexOutOfBoundsException("invalid index");
 	}
     }
 }

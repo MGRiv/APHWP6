@@ -1,7 +1,7 @@
 public class SuperArray{
     private Object[] L;
     private int con;
-
+    
     public SuperArray(){
 	L = new Object[10];
     }
@@ -17,7 +17,7 @@ public class SuperArray{
 	return r;
     }
     public boolean range(int index){
-	return !(index < 0 || index >= con);
+	return !(index < 0 || index >= size());
     }
     public void add(Object e){
 	if(L.length > 0){
@@ -37,12 +37,18 @@ public class SuperArray{
 	}
     }
     public void add(int index, Object e){
-	private Object[] temp = new Object[con + 1];
-	for(int i = 0; i < index - 1; i++){
-	    
-
-
+	if(range(index)){
+	    resize(L.length + 1);
+	    for(int i = index+1; i < L.length; i++){
+		L[i] = L[i - 1];
+	    }
+	    set(index,e);
+	}else{
+	    System.out.println("Error: Out of range");
+	}
+    }
     public int size(){
+	con = 0;
 	for(int i = 0; i < L.length; i++){
 	    if(L[i] != null){
 		con++;
@@ -53,7 +59,7 @@ public class SuperArray{
     public void resize(int newSize){
 	if(L.length > 0){
 	    Object[]temp = new Object[newSize];
-	    for(int i = 0; i < size() && i < newSize;i++){
+	    for(int i = 0; i < L.length && i < newSize;i++){
 		temp[i] = L[i];
 	    }
 	    L = temp;
@@ -66,10 +72,34 @@ public class SuperArray{
 	    L[i] = null;
 	}
     }
-    public Object get(int index){
-	return L[index - 1];
+    public Object remove(int index){
+	if(range(index)){
+	    Object r = L[index];
+	    for(int i = index; i < L.length - 1; i++){
+		L[i] = L[i + 1];
+	    }
+	    resize(L.length - 1);
+	    return r;
+	}else{
+	    System.out.println("Error: Out of range");
+	    return null;
+	}
     }
-    public void set(int index, Object e){
-	L[index - 1] = e;
+    public Object get(int index){
+	if(range(index)){
+	    return L[index - 1];
+	}else{
+	    System.out.println("Error: Out of range");
+	    return null;
+	}
+    }
+    public Object set(int index, Object e){
+	if(range(index)){
+	    L[index] = e;
+	    return e;
+	}else{
+	    System.out.println("Error: Out of range");
+	    return null;
+	}
     }
 }
