@@ -11,7 +11,7 @@ public class ArrayCollapse{
 	}
     }
     public static void main(String[]args){
-	ArrayList<Integer> Q = new ArrayList<Integer>();
+	ArrayList<Integer> Q = new ArrayList<Integr>();
 	Q.add(2);
 	Q.add(3);
 	Q.add(3);
