@@ -27,11 +27,11 @@ public class WordGrid{
     public String toString(){
 	String ret = "";
 	for(int i = 0;i < data.length;i++){
-	    
+	    ret += "*";
 	    for(int c = 0;c < data.length;c++){
 		ret += Character.toString(data[i][c]) + " ";
 	    }
-	    ret += "\n";
+	    ret += "*\n";
 	}
 	return ret;
     }
