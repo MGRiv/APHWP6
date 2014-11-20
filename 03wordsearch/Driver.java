@@ -18,7 +18,7 @@ public class Driver{
 	    System.out.println("Can't be done 3");
 	}
 	try{
-	    Q.addWordHorizontal("Nah",7,0);
+	    Q.addWordHorizontal("Nah",0,7);
 	}catch(IndexOutOfBoundsException e){
 	    System.out.println("Can't be done 4");
 	}

@@ -46,14 +46,23 @@ public class WordGrid{
      */    
     public boolean addWordHorizontal(String word, int row, int col){
 	boolean ret = false;
+	boolean check = true;
 	if(word.length() <= (data[row].length - col)){
-	    for(int i = 0; i < word.length();i++){
-		data[row - 1][col + i - 1] = word.charAt(i);
+	    for(int c = 0; c < word.length();c++){
+		if(data[row - 1][col + c - 1] == word.charAt(c) || Character.toString(data[row - 1][col + c - 1]).equals(" ")){
+		    check = false;
+		}
 	    }
-	    ret = true;
+	    if(check){
+		for(int i = 0; i < word.length();i++){
+		    data[row - 1][col + i - 1] = word.charAt(i);
+		}
+		ret = true;
+	    }
 	}else{
 	    System.out.println("Can't be done");
 	}
+	System.out.println(check);
 	return ret;
     }
 }
