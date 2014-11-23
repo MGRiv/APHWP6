@@ -107,6 +107,8 @@ public class WordGrid{
 	    for(int i = 0; i < word.length();i++){
 		data[row + i - 1][col + i -1] = word.charAt(i);
 	    }
+	    return true;
 	}
+	return false;
     }
 }
