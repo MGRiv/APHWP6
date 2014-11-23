@@ -98,6 +98,15 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWordDiagonal(String word, int row, int col){
-	
+	if(word.length() <= (data.length() - row) && word.length() <= (data[row].length - col)){
+	    for(int c = 0; c < word.length; c++){
+		if(data[row + c - 1][col + c - 1] != ' ' && data[row + c - 1][col + c - 1] != word.charAt(c)){
+		    return false;
+		}
+	    }
+	    for(int i = 0; i < word.length();i++){
+		data[row + i - 1][col + i -1] = word.charAt(i);
+	    }
+	}
     }
 }
