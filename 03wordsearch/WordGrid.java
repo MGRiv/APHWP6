@@ -101,6 +101,7 @@ public class WordGrid{
 	if(word.length() <= (data.length() - row) && word.length() <= (data[row].length - col)){
 	    for(int c = 0; c < word.length; c++){
 		if(data[row + c - 1][col + c - 1] != ' ' && data[row + c - 1][col + c - 1] != word.charAt(c)){
+		    System.out.println("shoot");
 		    return false;
 		}
 	    }
@@ -109,6 +110,7 @@ public class WordGrid{
 	    }
 	    return true;
 	}
+	System.out.println("AAAHHH");
 	return false;
     }
 }
