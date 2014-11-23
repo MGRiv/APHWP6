@@ -152,13 +152,14 @@ public class WordGrid{
 		}
 	    }
 	    if((word.length() <= ((data.length() - (rowd * row)) % data.length()) || rowd == 0) && (word.length() <= (data[row].length - (cold * col) % data[row].length() || cold == 0))){
-	    for(int i = 0; i < word.length();i++){
-		if(data[row + i + rowd][col + i + cold] != ' ' && data[row + i - rowd][col + i - cold] != word.charAt(i)){
-		    System.out.println("shazbot");
-		    break;
-		}else{
+		for(int i = 0; i < word.length();i++){
+		    if(data[row + i + rowd][col + i + cold] != ' ' && data[row + i - rowd][col + i - cold] != word.charAt(i)){
+			System.out.println("shazbot");
+			break;
+		    }else{
 		    h.add(rowd);
 		    v.add(cold);
+		    }
 		}
 	    }
 	}
@@ -167,5 +168,7 @@ public class WordGrid{
 	    rowd = h.get(t);
 	    cold = v.get(t);
 	    for(int q = 0; q < word.length(); q++){
-    }	    
+	    }	    
+	}
+    }
 }
