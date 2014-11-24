@@ -73,7 +73,7 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWordVertical(String word, int row, int col){
-	if(word.length <= (data.length - row)){
+	if(word.length() <= (data.length - row)){
 	    for(int c = 0; c < word.length();c++){
 		if(data[row - 1 + c][col - 1] != ' ' && data[row - 1 + c][col - 1] != word.charAt(c)){
 		    System.out.println("oh no");
@@ -99,8 +99,8 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWordDiagonal(String word, int row, int col){
-	if(word.length() <= (data.length() - row) && word.length() <= (data[row].length - col)){
-	    for(int c = 0; c < word.length; c++){
+	if(word.length() <= (data.length - row) && word.length() <= (data[row].length - col)){
+	    for(int c = 0; c < word.length(); c++){
 		if(data[row + c - 1][col + c - 1] != ' ' && data[row + c - 1][col + c - 1] != word.charAt(c)){
 		    System.out.println("shoot");
 		    return false;
@@ -114,9 +114,19 @@ public class WordGrid{
 	System.out.println("AAAHHH");
 	return false;
     }
+    /**Attempts to add a given word to the specified position of the WordGrid in any direction.
+     *The word must fit on the WordGrid. It is added in any of the eight cardinal or intercardinal
+     *directions, and must have a corresponding letter to match any letters that it overlaps.
+     *
+     *@param word is any text to be added to the word grid.
+     *@param row is the vertical locaiton of where you want the word to start.
+     *@param col is the horizontal location of where you want the word to start.
+     *@return true when the word is added successfully. When the word doesn't fit,
+     *or there are overlapping letters that do not match, then false is returned.
+     */
     public boolean addUniversal(String word, int row, int col){
 	ArrayList<Integer> h = new ArrayList();
-	ArrayList<integer> v = new ArrayList();
+	ArrayList<Integer> v = new ArrayList();
 	Random rand = new Random();
 	int t;
 	for(int c = 0;c < 8;c++){
@@ -151,7 +161,7 @@ public class WordGrid{
 		    rowd = 1;
 		}
 	    }
-	    if((word.length() <= ((data.length() - (rowd * row)) % data.length()) || rowd == 0) && (word.length() <= (data[row].length - (cold * col) % data[row].length() || cold == 0))){
+	    if((word.length() <= ((data.length() - (rowd * row)) % data.length) || rowd == 0) && ((word.length() <= (data[row].length - (cold * col)) % data[row].length ) || cold == 0)){
 		for(int i = 0; i < word.length();i++){
 		    if(data[row + i + rowd][col + i + cold] != ' ' && data[row + i - rowd][col + i - cold] != word.charAt(i)){
 			System.out.println("shazbot");
@@ -168,7 +178,10 @@ public class WordGrid{
 	    rowd = h.get(t);
 	    cold = v.get(t);
 	    for(int q = 0; q < word.length(); q++){
-	    }	    
+		data[row - 1 + (q * rowd)][col - 1 + (q * cold)] = word.charAt(q);
+	    }
+	    return true;
 	}
+	return false;
     }
 }
