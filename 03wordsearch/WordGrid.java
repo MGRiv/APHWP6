@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 public class WordGrid{
     private char[][]data;
     private int rowd, cold;
@@ -11,6 +13,7 @@ public class WordGrid{
     public WordGrid(int height, int width){
 	data = new char[height][width];
 	clear();
+	compWords();
     }
     
     /**Set all values in the WordGrid to spaces ' '*/
@@ -19,6 +22,19 @@ public class WordGrid{
 	    for(int c = 0;c < data[i].length;c++){
 		data[i][c] = ' ';
 	    }
+	}
+    }
+    /**Retrieves words from a separate txt file */
+    private void compWords(){
+	Random rand = new Random();
+	try{
+	    File input = new File("words.txt");
+	    Scanner in = new Scanner(input);
+	    while(in.hasNext()){
+		addUniversal(in.nextLine(), rand.nextInt(data.length), rand.nextInt(data[0].length));
+	    }
+	}catch(FileNotFoundException fnfe){
+	    System.out.println("Not such file");
 	}
     }
     /**The proper formatting for a WordGrid is created in the toString.
@@ -125,8 +141,8 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addUniversal(String word, int row, int col){
-	ArrayList<Integer> h = new ArrayList();
-	ArrayList<Integer> v = new ArrayList();
+	ArrayList<Integer> h = new ArrayList<Integer>();
+	ArrayList<Integer> v = new ArrayList<Integer>();
 	Random rand = new Random();
 	int t;
 	for(int c = 0;c < 8;c++){
@@ -161,9 +177,9 @@ public class WordGrid{
 		    rowd = 1;
 		}
 	    }
-	    if((word.length() <= ((data.length() - (rowd * row)) % data.length) || rowd == 0) && ((word.length() <= (data[row].length - (cold * col)) % data[row].length ) || cold == 0)){
+	    if((word.length() <= ((data.length - (rowd * row)) % data.length) || rowd == 0) && ((word.length() <= ((data[row].length - (cold * col)) % data[row].length ) || cold == 0))){
 		for(int i = 0; i < word.length();i++){
-		    if(data[row + i + rowd][col + i + cold] != ' ' && data[row + i - rowd][col + i - cold] != word.charAt(i)){
+		    if(data[row + (i * rowd)][col + (i * cold)] != ' ' && data[row + (i * rowd)][col + (i * cold)] != word.charAt(i)){
 			System.out.println("shazbot");
 			break;
 		    }else{
@@ -178,7 +194,7 @@ public class WordGrid{
 	    rowd = h.get(t);
 	    cold = v.get(t);
 	    for(int q = 0; q < word.length(); q++){
-		data[row - 1 + (q * rowd)][col - 1 + (q * cold)] = word.charAt(q);
+		data[row + (q * rowd)][col + (q * cold)] = word.charAt(q);
 	    }
 	    return true;
 	}

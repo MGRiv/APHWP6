@@ -1,7 +1,6 @@
 public class Driver{
     public static void main(String[]args){
 	WordGrid Q = new WordGrid(6,6);
-	Q.clear();
 	System.out.println(Q.toString());
 	try{
 	    Q.addWordHorizontal("Willnotwork",3,6);
@@ -19,7 +18,7 @@ public class Driver{
 	    System.out.println("Can't be done 3");
 	}
 	try{
-	    Q.addWordHorizontal("Nah",7,0);
+	    Q.addWordHorizontal("Nah",0,7);
 	}catch(IndexOutOfBoundsException e){
 	    System.out.println("Can't be done 4");
 	}
