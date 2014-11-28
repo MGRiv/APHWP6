@@ -5,6 +5,7 @@ public class WordGrid{
     private char[][]data;
     private int rowd, cold;
     private Random rand = new Random();
+    private ArrayList<String> wordsin = new ArrayList<String>();
 
     /**Initialize the grid to the size specified and fill all of the positions
      *with spaces.
@@ -27,6 +28,12 @@ public class WordGrid{
     /**Sets the seed of the grid for replayability*/
     public void setSeed(long q){
 	rand.setSeed(q);
+    }
+    /**Returns an ArrayList of words added to the word grid
+     *@return an ArrayList of words in the grid
+     */
+    public ArrayList<String> inword(){
+	return wordsin;
     }
     /**Retrieves words from a separate txt file */
     private void compWords(){
@@ -121,8 +128,22 @@ public class WordGrid{
 	    for(int q = 0; q < word.length(); q++){
 		data[row + (q * rowd)][col + (q * cold)] = word.charAt(q);
 	    }
+	    wordsin.add(word);
 	    return true;
 	}
 	return false;
+    }
+    /**Strings together the list of words in the grid
+     *@return a String of words in the grid, with 4 words in each line
+     */
+    public String words(){
+	String ret = "";
+	for(int i  = 0; i < inword().size(); i++){
+	    ret += inword().get(i) + " ";
+	    if(i % 4 == 0){
+		ret += "\n";
+	    }
+	}
+	return ret;
     }
 }
