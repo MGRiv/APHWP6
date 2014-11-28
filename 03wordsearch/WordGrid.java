@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 public class WordGrid{
     private char[][]data;
     private int rowd, cold;
+    private Random rand = new Random();
 
     /**Initialize the grid to the size specified and fill all of the positions
      *with spaces.
@@ -13,7 +14,6 @@ public class WordGrid{
     public WordGrid(int height, int width){
 	data = new char[height][width];
 	clear();
-	compWords();
     }
     
     /**Set all values in the WordGrid to spaces ' '*/
@@ -24,9 +24,12 @@ public class WordGrid{
 	    }
 	}
     }
+    /**Sets the seed of the grid for replayability*/
+    public void setSeed(long q){
+	rand.setSeed(q);
+    }
     /**Retrieves words from a separate txt file */
     private void compWords(){
-	Random rand = new Random();
 	try{
 	    File input = new File("words.txt");
 	    Scanner in = new Scanner(input);
@@ -51,84 +54,6 @@ public class WordGrid{
 	    ret += "*\n";
 	}
 	return ret;
-    }
-    /**Attempts to add a given word to the specified position of the WordGrid horizontally.
-     *The word is added from left to right, must fit on the WordGrid, and must
-     *have a corresponding letter to match any letters that it overlaps.
-     *
-     *@param word is any text to be added to the word grid.
-     *@param row is the vertical locaiton of where you want the word to start.
-     *@param col is the horizontal location of where you want the word to start.
-     *@return true when the word is added successfully. When the word doesn't fit,
-     *or there are overlapping letters that do not match, then false is returned.
-     */    
-    public boolean addWordHorizontal(String word, int row, int col){
-	if(word.length() <= (data[row].length - col)){
-	    for(int c = 0; c < word.length();c++){
-		if(data[row - 1][col + c - 1] != word.charAt(c) && (data[row - 1][col + c - 1]) != ' '){
-		    System.out.println("Yikes");
-		    return false;
-		}
-	    }
-	    for(int i = 0; i < word.length();i++){
-		data[row - 1][col + i - 1] = word.charAt(i);
-	    }
-	    return true;
-	}
-	System.out.println("dang");
-	return false;
-    }
-    /**Attempts to add a given word to the specified position of the WordGrid vertically.
-     *The word is added from top to bottom, must fit on the WordGrid, and must
-     *have a corresponding letter to match any letters that it overlaps.
-     *
-     *@param word is any text to be added to the word grid.
-     *@param row is the vertical locaiton of where you want the word to start.
-     *@param col is the horizontal location of where you want the word to start.
-     *@return true when the word is added successfully. When the word doesn't fit,
-     *or there are overlapping letters that do not match, then false is returned.
-     */
-    public boolean addWordVertical(String word, int row, int col){
-	if(word.length() <= (data.length - row)){
-	    for(int c = 0; c < word.length();c++){
-		if(data[row - 1 + c][col - 1] != ' ' && data[row - 1 + c][col - 1] != word.charAt(c)){
-		    System.out.println("oh no");
-		    return false;
-		}
-	    }
-	    for(int i = 0; i < word.length();i++){
-		data[row + i - 1][col - 1] = word.charAt(i);
-	    }
-		return true;
-	}
-	System.out.println("shucks");
-	return false;
-    }
-    /**Attempts to add a given word to the specified position of the WordGrid diagonally.
-     *The word is added from left to right, top to bottom, must fit on the WordGrid, and must
-     *have a corresponding letter to match any letters that it overlaps.
-     *
-     *@param word is any text to be added to the word grid.
-     *@param row is the vertical locaiton of where you want the word to start.
-     *@param col is the horizontal location of where you want the word to start.
-     *@return true when the word is added successfully. When the word doesn't fit,
-     *or there are overlapping letters that do not match, then false is returned.
-     */
-    public boolean addWordDiagonal(String word, int row, int col){
-	if(word.length() <= (data.length - row) && word.length() <= (data[row].length - col)){
-	    for(int c = 0; c < word.length(); c++){
-		if(data[row + c - 1][col + c - 1] != ' ' && data[row + c - 1][col + c - 1] != word.charAt(c)){
-		    System.out.println("shoot");
-		    return false;
-		}
-	    }
-	    for(int i = 0; i < word.length();i++){
-		data[row + i - 1][col + i -1] = word.charAt(i);
-	    }
-	    return true;
-	}
-	System.out.println("AAAHHH");
-	return false;
     }
     /**Attempts to add a given word to the specified position of the WordGrid in any direction.
      *The word must fit on the WordGrid. It is added in any of the eight cardinal or intercardinal
