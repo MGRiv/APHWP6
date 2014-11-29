@@ -146,4 +146,13 @@ public class WordGrid{
 	}
 	return ret;
     }
+    public void fillin(){
+	for(int i = 0; i < data.length; i++){
+	    for(int c = 0; i < data[i].length; c++){
+		if(data[i][c] == ' '){
+		    data[i][c] = (char)('a' + r.nextInt(26));
+		}
+	    }
+	}
+    }
 }
