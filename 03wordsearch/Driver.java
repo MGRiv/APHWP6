@@ -5,7 +5,7 @@ public class Driver{
     public static void main(String[]args){
 	Random r = new Random();
 	boolean y = true;
-	if(args.length > 0){
+	if(args.length > 0 && args.length < 5){
 	    WordGrid q = new WordGrid(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
 	    if(args.length > 2){
 		q.setSeed(Long.parseLong(args[2]));
@@ -19,7 +19,7 @@ public class Driver{
 		}
 	    }
 	    q.loadWordsFromFile("words.txt", y);
-	    System.out.println("\nFind these words:" + q.words());
+	    System.out.println("\nFind these words:" + q.wordsInPuzzle());
 	    System.out.println("\n" + q.toString());
 	}else{
 	    System.out.println("Please follow this format:");

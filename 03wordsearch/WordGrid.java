@@ -12,8 +12,8 @@ public class WordGrid{
      *@param row is the starting height of the WordGrid
      *@param col is the starting width of the WordGrid
      */
-    public WordGrid(int height, int width){
-	data = new char[height][width];
+    public WordGrid(int height, int widt){
+	data = new char[height][widt];
 	clear();
     }
     public WordGrid(){
@@ -62,7 +62,7 @@ public class WordGrid{
 	String ret = "";
 	for(int i = 0;i < data.length;i++){
 	    ret += "*";
-	    for(int c = 0;c < data.length;c++){
+	    for(int c = 0;c < data[i].length;c++){
 		ret += Character.toString(data[i][c]) + " ";
 	    }
 	    ret += "*\n";
@@ -141,7 +141,7 @@ public class WordGrid{
     /**Strings together the list of words in the grid
      *@return a String of words in the grid, with 4 words in each line
      */
-    public String words(){
+    public String wordsInPuzzle(){
 	String ret = "";
 	for(int i  = 0; i < inword().size(); i++){
 	    if(i % 4 == 0){
