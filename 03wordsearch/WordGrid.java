@@ -16,6 +16,10 @@ public class WordGrid{
 	data = new char[height][width];
 	clear();
     }
+    public WordGrid(){
+	data = new char[10][10];
+	clear();
+    }
     
     /**Set all values in the WordGrid to spaces ' '*/
     private void clear(){
@@ -36,15 +40,18 @@ public class WordGrid{
 	return wordsin;
     }
     /**Retrieves words from a separate txt file */
-    private void compWords(){
+    public void loadWordsFromFile(String name, boolean p){
 	try{
-	    File input = new File("words.txt");
+	    File input = new File(name);
 	    Scanner in = new Scanner(input);
 	    while(in.hasNext()){
-		addUniversal(in.nextLine(), rand.nextInt(data.length), rand.nextInt(data[0].length));
+		    addUniversal(in.nextLine(), rand.nextInt(data.length), rand.nextInt(data[0].length));
 	    }
 	}catch(FileNotFoundException fnfe){
 	    System.out.println("Not such file");
+	}
+	if(p){
+	    fillin();
 	}
     }
     /**The proper formatting for a WordGrid is created in the toString.
@@ -75,7 +82,6 @@ public class WordGrid{
     public boolean addUniversal(String word, int row, int col){
 	ArrayList<Integer> h = new ArrayList<Integer>();
 	ArrayList<Integer> v = new ArrayList<Integer>();
-	Random rand = new Random();
 	int t;
 	for(int c = 0;c < 8;c++){
 	    if((c % 4) == 0){
@@ -112,7 +118,6 @@ public class WordGrid{
 	    if((word.length() <= ((data.length - (rowd * row)) % data.length) || rowd == 0) && ((word.length() <= ((data[row].length - (cold * col)) % data[row].length ) || cold == 0))){
 		for(int i = 0; i < word.length();i++){
 		    if(data[row + (i * rowd)][col + (i * cold)] != ' ' && data[row + (i * rowd)][col + (i * cold)] != word.charAt(i)){
-			System.out.println("shazbot");
 			break;
 		    }else{
 		    h.add(rowd);
@@ -139,18 +144,18 @@ public class WordGrid{
     public String words(){
 	String ret = "";
 	for(int i  = 0; i < inword().size(); i++){
-	    ret += inword().get(i) + " ";
 	    if(i % 4 == 0){
 		ret += "\n";
 	    }
+	    ret += inword().get(i) + " ";
 	}
 	return ret;
     }
     public void fillin(){
 	for(int i = 0; i < data.length; i++){
-	    for(int c = 0; i < data[i].length; c++){
+	    for(int c = 0; c < data[i].length; c++){
 		if(data[i][c] == ' '){
-		    data[i][c] = (char)('a' + r.nextInt(26));
+		    data[i][c] = (char)('a' + rand.nextInt(26));
 		}
 	    }
 	}
