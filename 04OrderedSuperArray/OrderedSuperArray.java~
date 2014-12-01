@@ -1,0 +1,14 @@
+public class OrderedSuperArray extends SuperArray{
+    
+    public void add(Object e){
+	boolean ret = true;
+	if(L.length > 0){
+	    do{
+		ret = add(e, (L.size() / 2));
+	    }while(ret);
+	}else{
+	    resize(1);
+	    L[0] = e;
+	}
+    }
+	   
