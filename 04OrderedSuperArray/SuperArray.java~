@@ -5,7 +5,7 @@ public class SuperArray{
     public SuperArray(){
 	L = new Object[10];
     }
-    public SuperArray(int n){
+    public SuperArray(String n){
 	L = new Object[n];
     }
     public String toString(){
@@ -17,16 +17,16 @@ public class SuperArray{
 	return r;
     }
     public boolean range(int index){
-	return !(index < 0 || index >= size());
+	return !(index < 0 || index > size());
     }
     public void add(Object e){
 	if(L.length > 0){
-	    if(L[L.length - 1] != null){
+	    if(L[L.length - 1].equals(null)){
 		resize(L.length + 1);
 		L[L.length - 1] = e;
 	    }
 	    for(int i = 0; i < L.length; i++){
-		if(L[i] == null){
+		if(L[i].equals(null)){
 		    L[i] = e;
 		    break;
 		}
@@ -38,7 +38,7 @@ public class SuperArray{
     }
     public void add(int index, Object e){
 	if(range(index)){
-	    resize(L.length + 1);
+	    resize(L.length * 2);
 	    for(int i = index+1; i < L.length; i++){
 		L[i] = L[i - 1];
 	    }
