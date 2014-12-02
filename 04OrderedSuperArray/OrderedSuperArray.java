@@ -30,6 +30,13 @@ public class OrderedSuperArray extends SuperArray{
 	    throw new IndexOutOfBoundsException("invalid index");
 	}
     }
+    public void insertionSort(){
+	int c = 0;
+	for(int i = 1;i < con; i++){
+	    while(){
+	    }
+	}
+    }
     /*
     public String set(int index, String e){
 	if(range(index)){
@@ -44,3 +51,4 @@ public class OrderedSuperArray extends SuperArray{
 }
 					 
 	   
+// do set method, and the insertion sort
