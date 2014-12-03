@@ -1,5 +1,5 @@
 public class SuperArray{
-    private String[] L;
+    public String[] L;
     public int con = 0;
     
     public SuperArray(){

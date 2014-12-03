@@ -31,9 +31,14 @@ public class OrderedSuperArray extends SuperArray{
 	}
     }
     public void insertionSort(){
-	int c = 0;
 	for(int i = 1;i < con; i++){
-	    while(){
+	    int c = 1;
+	    while((i - c) >= 0 && L[i].compareTo(get(i - c)) < 0){
+		c++;
+	    }
+	    while(c > 0){
+		L[c] = L[c - 1];
+		c--;
 	    }
 	}
     }
