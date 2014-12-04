@@ -1,0 +1,9 @@
+1: I verified that my insetionsort code worked by having it print out the SuperArray,
+and then eyeballing to see if the SuperArray was in fact sorted.
+
+2: I used System.nanoTime() to time both methods, and was able to switch between the two
+easily by adding or not adding an argument to "java Driver".
+My code took 36.349 microseconds
+Badinsertionsort took 11.383 milliseconds
+
+3: 
