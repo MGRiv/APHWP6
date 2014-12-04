@@ -20,40 +20,27 @@ public class SuperArray{
 	return !(index < 0 || index >= size());
     }
     public void add(Object e){
-	if(L.length > 0){
-	    if(L[L.length - 1] != null){
-		resize(L.length + 1);
-		L[L.length - 1] = e;
-	    }
-	    for(int i = 0; i < L.length; i++){
-		if(L[i] == null){
-		    L[i] = e;
-		    break;
-		}
-	    }
-	}else{
-	    resize(1);
-	    L[0] = e;
+	if(con == L.length){
+	    resize(L.length * 2);
 	}
+	L[con] = e;
+	con++;
     }
     public void add(int index, Object e){
 	if(range(index)){
-	    resize(L.length + 1);
-	    for(int i = L.length - 1; i > index; i--){
+	    if(con == L.length){
+		resize(L.length * 2);
+	    }
+	    for(int i = con; i > index; i--){
 		L[i] = L[i - 1];
 	    }
 	    set(index,e);
+	    con++;
 	}else{
 	    throw new IndexOutOfBoundsException("invalid index");
 	}
     }
     public int size(){
-	con = 0;
-	for(int i = 0; i < L.length; i++){
-	    if(L[i] != null){
-		con++;
-	    }
-	}
 	return con;
     }
     public void resize(int newSize){
@@ -71,6 +58,7 @@ public class SuperArray{
 	for(int i = 0; i < L.length; i++){
 	    L[i] = null;
 	}
+	con = 0;
     }
     public Object remove(int index){
 	if(range(index)){
@@ -79,6 +67,7 @@ public class SuperArray{
 		L[i] = L[i + 1];
 	    }
 	    resize(L.length - 1);
+	    con--;
 	    return r;
 	}else{
 	    throw new IndexOutOfBoundsException("invalid index");

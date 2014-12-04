@@ -39,7 +39,7 @@ public class SuperArray{
     public void add(int index, Object e){
 	if(range(index)){
 	    resize(L.length + 1);
-	    for(int i = index+1; i < L.length; i++){
+	    for(int i = L.length - 1; i > index; i--){
 		L[i] = L[i - 1];
 	    }
 	    set(index,e);
