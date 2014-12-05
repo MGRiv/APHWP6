@@ -30,18 +30,6 @@ public class OrderedSuperArray extends SuperArray{
 	    throw new IndexOutOfBoundsException("invalid index");
 	}
     }
-    public void insertionSort(){
-	for(int i = 1;i < con; i++){
-	    int c = 1;
-	    while((i - c) >= 0 && L[i].compareTo(get(i - c)) < 0){
-		c++;
-	    }
-	    while(c > 0){
-		L[c] = L[c - 1];
-		c--;
-	    }
-	}
-    }
     /*
     public String set(int index, String e){
 	if(range(index)){

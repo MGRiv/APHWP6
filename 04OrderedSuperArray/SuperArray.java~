@@ -88,4 +88,26 @@ public class SuperArray{
 	    throw new IndexOutOfBoundsException("invalid index");
 	}
     }
+    public void insertionSort(){
+	for(int i = 1;i < con; i++){
+	    String temp = L[i];
+	    int c = 1;
+	    while((i - c) >= 0 && L[i].compareTo(get(i - c)) < 0){
+		c++;
+	    }
+	    for(int q = 0; q < (c - 1); q++){
+		L[i - q] = L[i - q - 1];
+	    }
+	    L[i - c + 1] = temp;
+	}
+    }
+    public void badInsertionSort(){
+        OrderedSuperArray c = new OrderedSuperArray();
+        while( this.size() > 0){ 
+            c.add(this.remove(0));
+        }
+        while(c.size() > 0){
+            this.add(c.remove(0));
+        }
+    }
 }

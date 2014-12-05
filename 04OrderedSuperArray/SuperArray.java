@@ -110,4 +110,12 @@ public class SuperArray{
             this.add(c.remove(0));
         }
     }
+    public int find(String target){
+	for(int i = 0;i < con; i++){
+	    if(target.compareTo(get(i)) == 0){
+		return i;
+	    }
+	}
+	return -1;
+    }
 }
