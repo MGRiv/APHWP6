@@ -118,4 +118,22 @@ public class SuperArray{
 	}
 	return -1;
     }
+    public void selectionSort(){
+	for(int i = 0; i < con; i++){
+	    String temp = null;
+	    for(int j = i; j < con; j++){
+		if(temp == null){
+		    temp = L[j];
+		}else{
+		    if(L[j].compareTo(temp) < 0){
+			temp = L[j];
+		    }
+		}
+	    }
+	    for(int q = con;q>i + 1;q--){
+		L[q] = L[q-1];
+	    }
+	    L[i] = temp;
+	}
+    }
 }
