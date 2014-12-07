@@ -1,3 +1,4 @@
+import java.util.*;
 public class Driver{
     public static void main(String[]args){
 	OrderedSuperArray q = new OrderedSuperArray();
@@ -16,28 +17,37 @@ public class Driver{
 	System.out.println(q.toString());
 	*/
 	if(args.length > 0){
-	    SuperArray w = new SuperArray();
-	    w.add("yotta");
-	    w.add("yabba");
-	    w.add("dabba");
-	    w.add("doo");
-	    w.add("wakka");
-	    Long begin = System.nanoTime();
-	    w.badInsertionSort();
-	    Long end = System.nanoTime();
-	    System.out.println(begin - end);
-	    System.out.println(w.toString());
+	    if(args.length > 1){
+		SuperArray w = new SuperArray();
+		for(int i = 0; i < 500000; i++){
+		    w.add(Integer.toString(i));
+		}
+		System.out.println("Done");
+		Long begin = System.nanoTime();
+		w.badInsertionSort();
+		Long end = System.nanoTime();
+		System.out.println(end - begin);
+		System.out.println(w.toString());
+	    }else{
+		SuperArray w = new SuperArray();
+		for(int i = 0; i < 500000; i++){
+		    w.add(Integer.toString(i));
+		}
+		Long begin = System.nanoTime();
+		Arrays.sort(w.getL());
+		Long end = System.nanoTime();
+		System.out.println(end - begin);
+		System.out.println(w.toString());
+	    }
 	}else{
 	    SuperArray w = new SuperArray();
-	    w.add("yotta");
-	    w.add("yabba");
-	    w.add("dabba");
-	    w.add("doo");
-	    w.add("wakka");
+	    for(int i = 0; i < 500000; i++){
+		w.add(Integer.toString(i));
+	    }
 	    Long begin = System.nanoTime();
 	    w.insertionSort();
 	    Long end = System.nanoTime();
-	    System.out.println(begin - end);
+	    System.out.println(end - begin);
 	    System.out.println(w.toString());
 	}
     }

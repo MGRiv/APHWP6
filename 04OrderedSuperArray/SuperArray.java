@@ -88,6 +88,9 @@ public class SuperArray{
 	    throw new IndexOutOfBoundsException("invalid index");
 	}
     }
+    public String[] getL(){
+	return L;
+    }
     public void insertionSort(){
 	for(int i = 1;i < con; i++){
 	    String temp = L[i];
@@ -98,6 +101,7 @@ public class SuperArray{
 	    for(int q = 0; q < (c - 1); q++){
 		L[i - q] = L[i - q - 1];
 	    }
+	    System.out.println(temp);
 	    L[i - c + 1] = temp;
 	}
     }
@@ -105,9 +109,11 @@ public class SuperArray{
         OrderedSuperArray c = new OrderedSuperArray();
         while( this.size() > 0){ 
             c.add(this.remove(0));
+	    System.out.println(c.size());
         }
         while(c.size() > 0){
             this.add(c.remove(0));
+	    System.out.println(c.size());
         }
     }
     public int find(String target){
@@ -121,18 +127,18 @@ public class SuperArray{
     public void selectionSort(){
 	for(int i = 0; i < con; i++){
 	    String temp = null;
+	    int val = i;
 	    for(int j = i; j < con; j++){
 		if(temp == null){
 		    temp = L[j];
 		}else{
 		    if(L[j].compareTo(temp) < 0){
 			temp = L[j];
+			val = j;
 		    }
 		}
 	    }
-	    for(int q = con;q>i + 1;q--){
-		L[q] = L[q-1];
-	    }
+	    L[val] = L[i];
 	    L[i] = temp;
 	}
     }

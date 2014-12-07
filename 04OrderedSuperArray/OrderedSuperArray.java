@@ -9,9 +9,7 @@ public class OrderedSuperArray extends SuperArray{
     public void add(String e){
 	if(con > 0){
 	    int c = 0;
-	    System.out.println(e.compareTo(get(c)));
 	    while(c < con && e.compareTo(get(c)) > 0){
-		System.out.println(e.compareTo(get(c)));
 		c++;
 	    }
 	    if(c == size()){

@@ -110,4 +110,30 @@ public class SuperArray{
             this.add(c.remove(0));
         }
     }
+    public int find(String target){
+	for(int i = 0;i < con; i++){
+	    if(target.compareTo(get(i)) == 0){
+		return i;
+	    }
+	}
+	return -1;
+    }
+    public void selectionSort(){
+	for(int i = 0; i < con; i++){
+	    String temp = null;
+	    for(int j = i; j < con; j++){
+		if(temp == null){
+		    temp = L[j];
+		}else{
+		    if(L[j].compareTo(temp) < 0){
+			temp = L[j];
+		    }
+		}
+	    }
+	    for(int q = con;q>i + 1;q--){
+		L[q] = L[q-1];
+	    }
+	    L[i] = temp;
+	}
+    }
 }
