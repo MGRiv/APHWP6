@@ -1,0 +1,17 @@
+public class Sorts{
+
+    public static void Bubblesort(int[] Q){
+	for(int i = 0; Q.length - i > 0; i++){
+	    int c = 1;
+	    int temp = Q[0];
+	    while(c <= Q.length - i){
+		if(Q[c] < Q[c - 1]){
+		    temp = Q[c];
+		    Q[c] = Q[c - 1];
+		    Q[c - 1] = temp;
+		}
+		c++;
+	    }
+	}
+    }
+}
