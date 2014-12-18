@@ -1,10 +1,51 @@
+import java.util.Arrays;
+import java.util.*;
 public class Sorts{
+
+    public static void main(String[]args){
+	int[] test1 = new int[1000];
+	for(int i = 0; i < test1.length; i++){
+	    test1[i] = test1.length - i - 68;
+	}
+	Long begin = System.nanoTime();
+	Bubblesort(test1);
+	Long end = System.nanoTime();
+	System.out.println(end - begin);
+
+	int[] test2 = new int[1000];
+	for(int i = 0; i < test1.length; i++){
+	    test2[i] = test2.length -i - 68;
+	}
+	begin = System.nanoTime();
+	Bubblesort(test2);
+	end = System.nanoTime();
+	System.out.println(end - begin);
+
+	int[] test3 = new int[1000];
+	for(int i = 0; i < test3.length; i++){
+	    test3[i] = test3.length - i - 68;
+	}
+	begin = System.nanoTime();
+	Bubblesort(test3);
+	end = System.nanoTime();
+	System.out.println(end - begin);
+
+	int[] test4 = new int[1000];
+	for(int i = 0; i < test4.length; i++){
+	    test4[i] = test4.length - i - 68;
+	}
+	begin = System.nanoTime();
+	Arrays.sort(test4);
+	end = System.nanoTime();
+	System.out.println(end - begin);
+
+    }
 
     public static void Bubblesort(int[] Q){
 	for(int i = 0; Q.length - i > 0; i++){
 	    int c = 1;
 	    int temp = Q[0];
-	    while(c <= Q.length - i){
+	    while(c < Q.length - i){
 		if(Q[c] < Q[c - 1]){
 		    temp = Q[c];
 		    Q[c] = Q[c - 1];
@@ -40,5 +81,13 @@ public class Sorts{
 	    }
 	    Q[i - c + 1] = temp;
 	}
+    }
+    public static void toString(int[] Q){
+	String ret = "[ ";
+	for(int i = 0; i < Q.length; i++){
+	    ret += Q[i] + " ";
+	}
+	ret += "]";
+	System.out.println(ret);
     }
 }
