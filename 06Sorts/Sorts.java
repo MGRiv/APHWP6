@@ -41,7 +41,7 @@ public class Sorts{
 
     }
 
-    public static void Bubblesort(int[] Q){
+    public static void bubble(int[] Q){
 	for(int i = 0; Q.length - i > 0; i++){
 	    int c = 1;
 	    int temp = Q[0];
@@ -55,7 +55,7 @@ public class Sorts{
 	    }
 	}
     }
-    public static void selectionSort(int[] Q){
+    public static void selection(int[] Q){
 	for(int i = 0; i < Q.length; i++){
 	    int val = Q[i];
 	    int index = i;
@@ -69,7 +69,7 @@ public class Sorts{
 	    Q[i] = val;
 	}
     }
-    public static void insertionSort(int[] Q){
+    public static void insertion(int[] Q){
 	for(int i = 1;i < Q.length; i++){
 	    int temp = Q[i];
 	    int c = 1;
@@ -82,6 +82,27 @@ public class Sorts{
 	    Q[i - c + 1] = temp;
 	}
     }
+    public static void radix(int[] Q){
+	ArrayList<Integer> temp = new ArrayList<Integer>();
+	for(int i = 0; i < 10; i++){
+	    temp.add(new ArrayList<Integer>());
+	}
+	int large = Q[0];
+	for(int i = 1; i < Q.length; i++){
+	    if(Q[i] > large){
+		large = Q[i];
+	    }
+	}
+	int passes = 0;
+	while(large > 0){
+	    large = large / 10;
+	    passes++;
+	}
+	for(int q = 0; q < passes; q++){
+
+	}
+	
+    }
     public static void toString(int[] Q){
 	String ret = "[ ";
 	for(int i = 0; i < Q.length; i++){
@@ -89,5 +110,11 @@ public class Sorts{
 	}
 	ret += "]";
 	System.out.println(ret);
+    }
+    public static String name(){
+	return "Rivera,Michael";
+    }
+    public static int period(){
+	return 6;
     }
 }
