@@ -89,7 +89,7 @@ public class Sorts{
 	}
 	int large = Q[0];
 	for(int i = 1; i < Q.length; i++){
-	    if(Q[i] > large){
+	    if(Math.abs(Q[i]) > Math.abs(large)){
 		large = Q[i];
 	    }
 	}
@@ -99,7 +99,17 @@ public class Sorts{
 	    passes++;
 	}
 	for(int q = 0; q < passes; q++){
-
+	    for(int p = 0; p < Q.length; p++){
+		temp[Math.abs((Q[p] / (int)Math.pow(10, (double)q)) % 10)].add(Q[p]);
+	    }
+	    int c = 0;
+	    for(int i = 0; i < 10; i++){
+		for(int j = 0; j < temp.get(i).length; j++){
+		    Q[c] = temp.get(i).get(j);
+		    c++;
+		}
+		temp.get(i).clear();
+	    }
 	}
 	
     }
